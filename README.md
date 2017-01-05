@@ -16,7 +16,11 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 ## Code Example
 
 ```
-$nin = new Nin('QQ123456C');
+<?php
+use VasilDakov\Nino\Nino;
+
+$nino = new Nino('QQ123456C');
+
 ```
 
 
