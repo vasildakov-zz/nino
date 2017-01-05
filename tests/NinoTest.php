@@ -65,6 +65,11 @@ class NinoTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Returns an array with sanitized ni
+     *
+     * @return array
+     */
     public function sanitizedNinoProvider()
     {
         return [
@@ -76,6 +81,8 @@ class NinoTest extends \PHPUnit_Framework_TestCase
             ['AA112233E', false],
             ['DA112233A', false],
             ['AO112233A', false],
+            // real
+            ['ST648120A', true],
         ];
     }
 }
