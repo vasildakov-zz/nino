@@ -1,6 +1,8 @@
 {
-    "name": "vasildakov/nin",
+    "name": "vasildakov/nino",
     "description": "UK National Insurance Number",
+    "keywords": ["ni", "nin", "nino", "national insurance number", "uk", "php"],
+    "homepage": "https://github.com/vasildakov/nino",
     "type": "library",
     "license": "MIT",
     "authors": [

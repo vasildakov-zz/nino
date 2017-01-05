@@ -1,21 +1,21 @@
-# UK National Insurance Number
+# UK National Insurance Number (NINO)
 
 ## Synopsis
-Value Object that represents an UK National Insurance Number
+Value Object that represents an UK National Insurance Number (NINO)
 
 ## Installation
 
-Here is a minimal example of a `composer.json` file that just defines a dependency on Postcode:
+Here is a minimal example of a `composer.json` file that just defines a dependency on Nino:
 
     {
         "require": {
-            "vasildakov/nin": "^0.1"
+            "vasildakov/nino": "^0.1"
         }
     }
 
 ## Code Example
 
-```
+```php
 <?php
 use VasilDakov\Nino\Nino;
 
