@@ -1,54 +1,54 @@
 <?php
 namespace VasilDakov\Tests;
 
-use VasilDakov\Nin\NinInterface;
-use VasilDakov\Nin\Nin;
+use VasilDakov\Nino\NinoInterface;
+use VasilDakov\Nino\Nino;
 
-class NinTest extends \PHPUnit_Framework_TestCase
+class NinoTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
-     * @covers \VasilDakov\Nin\Nin::__construct
+     * @covers \VasilDakov\Nino\Nino::__construct
      */
     public function itCanBeConstructedWithSanitizedString()
     {
-        self::assertInstanceOf(NinInterface::class, new Nin('AA112233A'));
+        self::assertInstanceOf(NinoInterface::class, new Nino('AA112233A'));
     }
 
     /**
      * @test
-     * @covers \VasilDakov\Nin\Nin::__construct
+     * @covers \VasilDakov\Nino\Nino::__construct
      */
     public function itCanBeConstructedWithNonSanitizedString()
     {
-        $nino = new Nin('AA 11 22 33 A');
+        $nino = new Nino('AA 11 22 33 A');
 
-        self::assertInstanceOf(NinInterface::class, $nino);
+        self::assertInstanceOf(NinoInterface::class, $nino);
 
         self::assertEquals('AA112233A', $nino->getValue());
     }
 
     /**
      * @test
-     * @covers \VasilDakov\Nin\Nin::__construct
+     * @covers \VasilDakov\Nino\Nino::__construct
      */
     public function itCanBeCreatedFromSanitizedString()
     {
-        $nino = Nin::fromString('AB123456A');
+        $nino = Nino::fromString('AB123456A');
 
-        self::assertInstanceOf(NinInterface::class, $nino);
+        self::assertInstanceOf(NinoInterface::class, $nino);
     }
 
 
     /**
      * @test
-     * @covers \VasilDakov\Nin\Nin::__construct
+     * @covers \VasilDakov\Nino\Nino::__construct
      */
     public function itCanBeCreatedFromNonSanitizedString()
     {
-        $nino = Nin::fromString('AB 12 34 56 A');
+        $nino = Nino::fromString('AB 12 34 56 A');
 
-        self::assertInstanceOf(NinInterface::class, $nino);
+        self::assertInstanceOf(NinoInterface::class, $nino);
 
         self::assertEquals('AB123456A', $nino->getValue());
     }
@@ -56,16 +56,16 @@ class NinTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @dataProvider sanitizedNinProvider
-     * @covers \VasilDakov\Nin\Nin::isValid
+     * @dataProvider sanitizedNinoProvider
+     * @covers \VasilDakov\Nino\Nino::isValid
      */
     public function itCanValidateNin($string, $expected)
     {
-        self::assertEquals($expected, Nin::isValid($string));
+        self::assertEquals($expected, Nino::isValid($string));
     }
 
 
-    public function sanitizedNinProvider()
+    public function sanitizedNinoProvider()
     {
         return [
             // valid

@@ -9,14 +9,14 @@
  * @license http://opensource.org/licenses/MIT MIT
  * @link https://github.com/vasildakov/nin GitHub
  */
-namespace VasilDakov\Nin;
+namespace VasilDakov\Nino;
 
 /**
- * Class Nin
+ * Class Nino
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-final class Nin implements NinInterface
+final class Nino implements NinoInterface
 {
     /**
      * /                      # Wraps regex
@@ -53,7 +53,10 @@ final class Nin implements NinInterface
      * @param  NinInterface $other
      * @return boolean
      */
-    public function equals(NinInterface $other) {}
+    public function equals(NinInterface $other)
+    {
+        #
+    }
 
 
     /**

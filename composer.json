@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VasilDakov\\Nin\\": "src/"
+            "VasilDakov\\Nino\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VasilDakov\\Nin\\": "tests/"
+            "VasilDakov\\Nino\\": "tests/"
         }
     }
 }

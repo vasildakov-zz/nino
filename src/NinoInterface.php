@@ -9,14 +9,14 @@
  * @license http://opensource.org/licenses/MIT MIT
  * @link https://github.com/vasildakov/nin GitHub
  */
-namespace VasilDakov\Nin;
+namespace VasilDakov\Nino;
 
 /**
- * Interface NinInterface
+ * Interface NinoInterface
  *
  * @author Vasil Dakov <vasildakov@gmail.com>
  */
-interface NinInterface
+interface NinoInterface
 {
     public static function isValid($value);
 
@@ -25,5 +25,4 @@ interface NinInterface
     public function equals(NinInterface $other);
 
     public function getValue();
-
 }
