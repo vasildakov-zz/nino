@@ -20,5 +20,10 @@ interface NinInterface
 {
     public static function isValid($value);
 
+    public static function fromString($value);
+
+    public function equals(NinInterface $other);
+
     public function getValue();
+
 }

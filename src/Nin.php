@@ -41,14 +41,15 @@ final class Nin implements NinInterface
      */
     public function __construct($value)
     {
-        $value = \preg_replace('/(\s+)|(-)/', '', $value);
-
-        if (!self::isValid($value)) {
-            throw new \InvalidArgumentException("Invalid national insurance number");
-        }
-
-        $this->value = $value;
+        $this->setValue($value);
     }
+
+
+    /**
+     * @param  NinInterface $other
+     * @return boolean
+     */
+    public function equals(NinInterface $other) {}
 
 
     /**
@@ -65,6 +66,36 @@ final class Nin implements NinInterface
 
         return true;
     }
+
+
+    /**
+     * @param string $value
+     */
+    private function setValue($value)
+    {
+        if (!self::isValid($value)) {
+            throw new \InvalidArgumentException("Invalid national insurance number");
+        }
+
+        $this->value = $value;
+    }
+
+    /**
+     * Returns an object created from string
+     *
+     * @return Nin
+     */
+    public static function fromString($value)
+    {
+        return new static($value);
+    }
+
+
+    private function sanitize($value)
+    {
+        return \preg_replace('/(\s+)|(-)/', '', $value);
+    }
+
 
     /**
      * @return string $value
