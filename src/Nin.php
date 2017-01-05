@@ -28,7 +28,8 @@ final class Nin implements NinInterface
      * $                      # End of string
      * /i                     # Ending wrapper and i denotes can be upper or lower case
      */
-    const REGEX = '/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/i';
+    //const REGEX = '/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/i';
+    const REGEX = '/^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$/';
 
     /**
      * @var string
@@ -60,6 +61,8 @@ final class Nin implements NinInterface
      */
     public static function isValid($value)
     {
+        $value = \preg_replace('/\s\s+/', ' ', $value);
+
         if (!\preg_match(self::REGEX, $value)) {
             return false;
         }
@@ -73,6 +76,8 @@ final class Nin implements NinInterface
      */
     private function setValue($value)
     {
+        $value = \preg_replace('/\s\s+/', ' ', $value);
+
         if (!self::isValid($value)) {
             throw new \InvalidArgumentException("Invalid national insurance number");
         }

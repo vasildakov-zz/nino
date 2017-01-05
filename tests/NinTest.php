@@ -4,26 +4,42 @@ namespace VasilDakov\Tests;
 use VasilDakov\Nin\NinInterface;
 use VasilDakov\Nin\Nin;
 
-class PostcodeTest extends \PHPUnit_Framework_TestCase
+class NinTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      * @covers \VasilDakov\Nin\Nin::__construct
      */
-    public function itCanBeConstructed()
+    public function itCanBeConstructedWithSanitizedString()
     {
-        $nin = new Nin('AA112233A');
-        self::assertInstanceOf(NinInterface::class, $nin);
+        self::assertInstanceOf(NinInterface::class, new Nin('AA112233A'));
     }
 
     /**
      * @test
      * @covers \VasilDakov\Nin\Nin::__construct
      */
-    public function itCanBeCreatedFromString()
+    public function itCanBeConstructedWithNonSanitizedString()
     {
-        $nin = Nin::fromString('AA112233A');
-        self::assertInstanceOf(NinInterface::class, $nin);
+        self::assertInstanceOf(NinInterface::class, new Nin('AA 11 22 33 A'));
+    }
+
+    /**
+     * @test
+     * @covers \VasilDakov\Nin\Nin::__construct
+     */
+    public function itCanBeCreatedFromSanitizedString()
+    {
+        self::assertInstanceOf(NinInterface::class, Nin::fromString('AB123456A'));
+    }
+
+    /**
+     * @test
+     * @covers \VasilDakov\Nin\Nin::__construct
+     */
+    public function itCanBeCreatedFromNonSanitizedString()
+    {
+        self::assertInstanceOf(NinInterface::class, Nin::fromString('AB 12 34 56 A'));
     }
 
     /**
@@ -42,8 +58,8 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase
         return [
             // valid
             ['AA112233A', true],
-            ['BB445566B', true],
-            ['ZZ678900C', true],
+            ['BB 44 55 66 B', true],
+            ['CC678900C', true],
             // invalid
             ['AA112233E', false],
             ['DA112233A', false],
