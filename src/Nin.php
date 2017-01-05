@@ -27,9 +27,12 @@ final class Nin implements NinInterface
      * [A-D]{1}               # Match last letter can only be A, B, C or D
      * $                      # End of string
      * /i                     # Ending wrapper and i denotes can be upper or lower case
+     * const REGEX = '/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/i';
      */
-    //const REGEX = '/^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D]{1}$/i';
+
     const REGEX = '/^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$/';
+    //const REGEX = '/^(?!BG|GB|NK|KN|TN|NT|ZZ)[ABCEGHJ-PRSTW-Z][ABCEGHJ-NPRSTW-Z]\d{6}[A-D]$/';
+
 
     /**
      * @var string
@@ -61,7 +64,7 @@ final class Nin implements NinInterface
      */
     public static function isValid($value)
     {
-        $value = \preg_replace('/\s\s+/', ' ', $value);
+        $value = \preg_replace('/(\s+)|(-)/', '', $value);
 
         if (!\preg_match(self::REGEX, $value)) {
             return false;
@@ -76,7 +79,7 @@ final class Nin implements NinInterface
      */
     private function setValue($value)
     {
-        $value = \preg_replace('/\s\s+/', ' ', $value);
+        $value = \preg_replace('/(\s+)|(-)/', '', $value);
 
         if (!self::isValid($value)) {
             throw new \InvalidArgumentException("Invalid national insurance number");

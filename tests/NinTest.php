@@ -21,7 +21,11 @@ class NinTest extends \PHPUnit_Framework_TestCase
      */
     public function itCanBeConstructedWithNonSanitizedString()
     {
-        self::assertInstanceOf(NinInterface::class, new Nin('AA 11 22 33 A'));
+        $nino = new Nin('AA 11 22 33 A');
+
+        self::assertInstanceOf(NinInterface::class, $nino);
+
+        self::assertEquals('AA112233A', $nino->getValue());
     }
 
     /**
@@ -30,8 +34,11 @@ class NinTest extends \PHPUnit_Framework_TestCase
      */
     public function itCanBeCreatedFromSanitizedString()
     {
-        self::assertInstanceOf(NinInterface::class, Nin::fromString('AB123456A'));
+        $nino = Nin::fromString('AB123456A');
+
+        self::assertInstanceOf(NinInterface::class, $nino);
     }
+
 
     /**
      * @test
@@ -39,8 +46,13 @@ class NinTest extends \PHPUnit_Framework_TestCase
      */
     public function itCanBeCreatedFromNonSanitizedString()
     {
-        self::assertInstanceOf(NinInterface::class, Nin::fromString('AB 12 34 56 A'));
+        $nino = Nin::fromString('AB 12 34 56 A');
+
+        self::assertInstanceOf(NinInterface::class, $nino);
+
+        self::assertEquals('AB123456A', $nino->getValue());
     }
+
 
     /**
      * @test
@@ -58,7 +70,7 @@ class NinTest extends \PHPUnit_Framework_TestCase
         return [
             // valid
             ['AA112233A', true],
-            ['BB 44 55 66 B', true],
+            ['AA445566A', true],
             ['CC678900C', true],
             // invalid
             ['AA112233E', false],
