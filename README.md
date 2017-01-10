@@ -19,7 +19,11 @@ Here is a minimal example of a `composer.json` file that just defines a dependen
 <?php
 use VasilDakov\Nino\Nino;
 
-$nino = new Nino('QQ123456C');
+$nino = new NationalInsuranceNumber('QQ 12 34 56 C');
+
+$tn = new TemporaryNumber('TN 31 12 58 F');
+
+$cbn = new ChildBenefitNumber('CHB12345678 AB');
 
 ```
 
